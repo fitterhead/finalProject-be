@@ -6,13 +6,6 @@ const albumController = {};
 albumController.createAlbum = async (req, res, next) => {
   //in real project you will getting info from req
   const input = req.body;
-  // const input = {
-  //   ranking: 1,
-  //   album: "OK Computer",
-  //   artistName: "Radiohead",
-  //   releaseDate: "16 June 1997",
-  //   genre: "Alternative Rock",
-  // };
   try {
     //always remember to control your inputs
     if (!input) throw new AppError(402, "Bad Request", "Create Album Error");
@@ -34,6 +27,10 @@ albumController.createAlbum = async (req, res, next) => {
 /* ------------------------------ get all Album ------------------------------ */
 albumController.getAllAlbums = async (req, res, next) => {
   const filter = req.body;
+  console.log("req", req);
+  // const query = req.query;
+  // query ? (filter = { "_id": `${query}` }) : (filter = req.body);
+
   // example: {"artistName":"Radiohead"}
   try {
     const listOfAlbum = await Album.find(filter).populate(
